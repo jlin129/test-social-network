@@ -1,5 +1,6 @@
 const express = require("express");
 const userSchema = require("../schema/user");
+const adminKey = 8888;  // Admin identification token
 
 const router = express.Router();
 
@@ -33,10 +34,15 @@ router.put("/users/:id", (req, res) => {
 // Delete user
 router.delete("/users/:id", (req, res) => {
     const { id } = req.params;
-    userSchema
+    const { key } = req.body;
+    if (key == adminKey ){
+        userSchema
         .remove({ _id: id })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
+    } else {
+        res.send("Invalid key");
+    }
 });
 
 module.exports = router;

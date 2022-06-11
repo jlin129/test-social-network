@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require ("./routes/user");
+const postRoutes = require ("./routes/post");
 
 const app = express();
 const port = process.env.PORT || 9000;  //default service port or 9000
@@ -9,6 +10,7 @@ const uri = "mongodb+srv://admin:admin123@cluster0.miu7zc6.mongodb.net/?retryWri
 // middlewares
 app.use(express.json());
 app.use('/api', userRoutes);
+app.use('/api', postRoutes);
 
 // server routes
 app.get('/', (req, res) => {
