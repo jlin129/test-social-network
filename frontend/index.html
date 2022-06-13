@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Socialnet Portal</title>
+    <script src="jquery.min.js"></script>
+    <script>
+        function signMeUp() {
+            var user = document.getElementById("regUser").value;
+            var password = document.getElementById("regPassword").value;
+            var data = {};
+            data.user = user;
+            data.password = password;
+            data = JSON.stringify(data);
+            console.log(data);
+            $.ajax({
+                url: 'http://localhost:9000/api/users',
+                async: false,
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: data,
+                success: function (res) { alert("Success" + JSON.stringify(res)); },
+                error: function (error) { alert("Error: " + error); }
+            });
+        }
+
+        function logMeIn() {
+            var user = document.getElementById("logUser").value;
+            var password = document.getElementById("logPassword").value;
+            var data = {};
+            var url = 'http://localhost:9000/api/users/v/';
+            url = url.concat(user);
+            data.user = user;
+            data.password = password;
+            data = JSON.stringify(data);
+            console.log(data);
+            console.log(url);
+            $.ajax({
+                url: url,
+                async: false,
+                dataType: 'json',
+                type: 'GET',
+                data: data,
+                contentType: 'application/json',
+                success: function (res) { window.alert(JSON.stringify(res)); },
+                error: function (error) { window.alert("Error: " + error); }
+            });
+        }
+
+        function newPost() {
+            var user = document.getElementById("postUser").value;
+            var pBody = document.getElementById("postBody").value;
+            var data = {};
+            data.user = user;
+            data.postBody = pBody;
+            data = JSON.stringify(data);
+            console.log(data);
+            $.ajax({
+                url: 'http://localhost:9000/api/post',
+                async: false,
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: data,
+                success: function (res) { alert("Success" + JSON.stringify(res)); },
+                error: function (error) { alert("Error: " + error); }
+            });
+        }
+
+        function printPosts() {
+            var url = 'http://localhost:9000/api/post';
+            $.ajax({
+                url: url,
+                dataType: 'json',
+                type: 'GET',
+                contentType: 'application/json',
+                success: function (res) {
+                    var response = JSON.stringify(res, null, 3);
+                    $("#posts").append(document.createTextNode(response));
+                },
+                error: function (error) { window.alert("Error: " + error); }
+            });
+        }
+    </script>
+</head>
+
+<body onload="printPosts()">
+    <h1>Socialnet Portal</h1>
+    <form onsubmit="signMeUp()" id="signUpForm">
+        <p><strong>Sign Up</strong></p>
+        Username: <input type="text" id="regUser" /> <br />
+        Password: <input type="text" id="regPassword" /> <br />
+        <input type="submit" value="Register" />
+    </form>
+
+    <form onsubmit="logMeIn()" id="logInForm">
+        <p><strong>Log In</strong></p>
+        Username: <input type="text" id="logUser" /> <br />
+        Password: <input type="text" id="logPassword" /> <br />
+        <input type="submit" value="Log In" />
+    </form>
+
+    <form onsubmit="newPost()" id="postSomething">
+        <p><strong>Make a post</strong></p>
+        Displayed name: <input type="text" id="postUser" /> <br />
+        Body: <input type="text" id="postBody" /> <br />
+        <input type="submit" value="Post" />
+    </form>
+
+    <h1>Posts</h1>
+    <pre id="posts"></pre>
+
+    <footer>
+        <span>© ATWM 2022 - Test social network</span>
+    </footer>
+</body>
+
+</html>

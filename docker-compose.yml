@@ -1,0 +1,26 @@
+version: '3.9'
+
+services:
+  # MongoDB services
+  mongodb:
+    container_name: db_container
+    image: mongo:latest
+    restart: always
+    volumes:
+      - mongodb:/data/db
+
+  # Node API services
+  api:
+    build: .
+    ports:
+      - 9000:9000
+    environment:
+      PORT: 9000
+      MONGODB_URI: mongodb://mongodb:27017
+      DB_NAME: my_db
+      NAME: SocialNet
+    depends_on:
+      - mongodb
+
+volumes:
+  mongodb: {}

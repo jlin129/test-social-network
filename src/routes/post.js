@@ -23,7 +23,7 @@ router.get("/post/:user", (req, res) => {
 
 // Get posts
 router.get("/post", (req, res) => {
-  postSchema
+    postSchema
     .find()
     .then((data) => res.json(data))
     .catch((error) => res.json({ message: error }));
