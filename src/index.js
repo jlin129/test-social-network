@@ -7,7 +7,7 @@ const cors=require("cors");
 const app = express();
 const port = process.env.PORT || 9000;  //default service port or 9000
 //const uri = "mongodb+srv://admin:admin123@cluster0.miu7zc6.mongodb.net/?retryWrites=true&w=majority";
-const uri = "mongodb://localhost:27017";
+const uri = "mongodb://mongodb:27017";
 
 // cors settings
 const corsOptions ={
@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
 // mongodb connections
 mongoose
-    .connect(uri).then(() => console.log("Successfully connected to MongoDB"))
+    .connect(uri).then(() => console.log("Successfully connected to MongoDB, uri: " + uri))
     .catch((error) => console.error(error));
 
 app.listen(port, () => console.log('Server listening on port', port));

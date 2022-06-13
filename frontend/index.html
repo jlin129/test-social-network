@@ -30,8 +30,7 @@
             var password = document.getElementById("logPassword").value;
             var data = {};
             var url = 'http://localhost:9000/api/users/v/';
-            url = url.concat(user);
-            data.user = user;
+            url = url.concat(password);
             data.password = password;
             data = JSON.stringify(data);
             console.log(data);
@@ -41,8 +40,8 @@
                 async: false,
                 dataType: 'json',
                 type: 'GET',
-                data: data,
                 contentType: 'application/json',
+                data: data,
                 success: function (res) { window.alert(JSON.stringify(res)); },
                 error: function (error) { window.alert("Error: " + error); }
             });

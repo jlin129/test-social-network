@@ -15,6 +15,7 @@ router.post("/post", (req, res) => {
 // Get posts from a user
 router.get("/post/:user", (req, res) => {
     const { user } = req.params;
+    console.log(user);
   postSchema
     .find({ user: user })
     .then((data) => res.json(data))

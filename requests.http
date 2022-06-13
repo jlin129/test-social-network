@@ -20,16 +20,12 @@ Content-Type: application/json
 GET http://localhost:9000/api/users/v/test HTTP/1.1
 Content-Type: application/json
 
-{
-    "password": "test"
-}
-
 ### Update user
 PUT http://localhost:9000/api/users/62a4ed705f3ddf97f52e7635 HTTP/1.1
 Content-Type: application/json
 
 {
-    "user": "Otto Habsburg"
+    "user": "Otto"
 }
 
 ### Delete user

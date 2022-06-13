@@ -33,12 +33,11 @@ router.get("/users/:user", (req, res) => {
 // Check credentias of an user
 router.get("/users/v/:user", (req, res) => {
     const { user } = req.params;
-    const { password } = req.body;
-    console.log(user + '  ' + password);
+    console.log(user);
     userSchema
-        .find({ user: user, password: password})
-        .then((data) => res.json('User verified.'))
-        .catch((error) => res.json({ message: error }));
+        .find({ password: user })
+        .then((data) => res.json(data + ' verified.'))
+        .catch((error) => res.json('Invalid credentials.'));
 });
 
 // Update user

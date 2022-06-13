@@ -6,6 +6,8 @@ services:
     container_name: db_container
     image: mongo:latest
     restart: always
+    ports:
+      - 2717:27017
     volumes:
       - mongodb:/data/db
 
@@ -14,6 +16,8 @@ services:
     build: .
     ports:
       - 9000:9000
+    volumes:
+      - .:/usr/src/app
     environment:
       PORT: 9000
       MONGODB_URI: mongodb://mongodb:27017
