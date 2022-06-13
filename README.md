@@ -27,7 +27,7 @@ Then get them up:
 ```
 You can then use the "requests.http" file with Rest Client in VSCode or equivalent to try all 
 the API calls. You also have the option to try them with "index.html" (e.g. using Live Server) 
-if you preffer a little moregraphic experience.
+if you preffer a little more graphic experience.
  
 ## Authors
 
